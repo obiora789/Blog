@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'header.html' %}
+    <body>
+        {% for blog_post in posts: %}
+            {% if blog_post.id == article_id: %}
+                <!-- Page Header-->
+                {% if 'fasting' in blog_post.title.lower(): %}
+                    <header class="masthead" style="background-image: url({{url_for('static', filename='assets')}}/img/fasting.jpg)">
+                {% elif 'fire' in blog_post.title.lower(): %}
+                    <header class="masthead" style="background-image: url({{url_for('static', filename='assets')}}/img/fire_alarm.jpg)">
+                {% elif 'distance' in blog_post.title.lower(): %}
+                    <header class="masthead" style="background-image: url({{url_for('static', filename='assets')}}/img/nasa_explore.jpg)">
+                {% else: %}
+                    <header class="masthead" style="background-image: url({{url_for('static', filename='assets')}}/img/else.jpg)">
+                {% endif %}
+                        <div class="container position-relative px-4 px-lg-5">
+                            <div class="row gx-4 gx-lg-5 justify-content-center">
+                                <div class="col-md-10 col-lg-8 col-xl-7">
+                                    <div class="post-heading">
+                                        <h1>{{blog_post.title.title()}}</h1>
+                                        <h2 class="subheading">{{blog_post.subtitle}}</h2>
+                                        <span class="meta">
+                                            Posted by
+                                            <a href="{{resume}}" target="_blank">{{name}}</a>
+                                            on {{blog_post.date}}.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </header>
+                <!-- Post Content-->
+                <article class="mb-4">
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-md-10 col-lg-8 col-xl-7">
+                                <p>{{blog_post.body}}</p>
+                                <p>
+                                    Placeholder text & images by
+                                    <a href="{{resume}}" target="_blank">{{name}}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Bootstrap core JS-->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                <!-- Core theme JS-->
+                <script src="{{url_for('static', filename='js')}}/scripts.js"></script>
+            {% endif %}
+        {% endfor %}
+    </body>
+    {% include 'footer.html' %}
+</html>
